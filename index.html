@@ -1,0 +1,932 @@
+
+                        <!DOCTYPE html>
+                        <html lang="en">
+                        <head>
+                            <meta charset="UTF-8">
+                            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+							<style>
+								body {
+									background-color: white; /* Ensure the iframe has a white background */
+								}
+
+								
+        /* CSS Variables for Pastel Palette */
+        :root {
+            --primary-color: #a291f2; /* Pastel Purple */
+            --secondary-color: #ffb3ab; /* Pastel Orange */
+            --accent-color: #a0c4ff; /* Pastel Blue */
+            --background-color: #fdf6fb; /* Light Pastel Background */
+            --text-color: #333333;
+            --navbar-bg: rgba(255, 255, 255, 0.9);
+            --navbar-text: #333333;
+            --footer-bg: #ece6f5;
+            --card-bg: #ffffff;
+            --btn-hover: #ffc9c9;
+        }
+        
+        /* Global Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            scroll-behavior: smooth;
+        }
+        
+        /* Navbar Styles */
+        .navbar {
+            background-color: var(--navbar-bg);
+            transition: background-color 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar.scrolled {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar-brand {
+            font-weight: 600;
+            color: var(--navbar-text) !important;
+        }
+        
+        .nav-link {
+            color: var(--navbar-text) !important;
+            font-weight: 500;
+            margin-left: 15px;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary-color) !important;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color)), url('https://images.unsplash.com/photo-1589254065878-42c9da997008?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            padding: 150px 0;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(44, 62, 80, 0.4);
+            z-index: -1;
+        }
+        
+        .hero h1 {
+            font-weight: 600;
+            font-size: 3.5rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+        }
+
+        .btn-primary {
+            background-color: var(--secondary-color);
+            border: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--btn-hover);
+        }
+        
+        /* About Section */
+        #about {
+            background-color: #ffffff;
+            padding: 80px 0;
+        }
+
+        #about h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        /* Features Section */
+        #features {
+            background-color: #fdf6fb;
+            padding: 80px 0;
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        
+        /* Products Section */
+        #products {
+            padding: 80px 0;
+            background-color: #ffffff;
+        }
+        
+        .card {
+            background-color: var(--card-bg);
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card-img-top {
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .card-title {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        
+        .btn-primary {
+            background-color: var(--secondary-color);
+            border: none;
+        }
+        
+        /* LIDAR Integration Section */
+        #lidar {
+            background-color: #e6f7ff;
+            padding: 80px 0;
+        }
+        
+        .lidar-icon {
+            font-size: 3rem;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+        
+        /* Testimonials Section */
+        #testimonials {
+            background-color: #ece6f5;
+            padding: 80px 0;
+        }
+        
+        .testimonial-card {
+            background-color: var(--card-bg);
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            padding: 30px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .blockquote-footer {
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+        
+        /* Contact Section */
+        #contact {
+            padding: 80px 0;
+        }
+        
+        .form-control {
+            border-radius: 10px;
+            border: 1px solid #cccccc;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: none;
+        }
+        
+        .btn-primary {
+            border-radius: 10px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--footer-bg);
+            color: #333333;
+            padding: 30px 0;
+        }
+        
+        .social-icons a {
+            color: var(--navbar-text);
+            margin: 0 10px;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            color: var(--primary-color);
+        }
+        
+        /* Scroll to Top Button */
+        #scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: none;
+            z-index: 1000;
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 100px 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+    
+
+							</style>
+                        </head>
+                        <body>
+                            <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Splat Robotics - Revolutionary Talking Dog Heads for Quadruped Robots</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    
+    <!-- AOS (Animate on Scroll) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+    
+    <!-- Custom Styles -->
+    <style>
+        /* CSS Variables for Pastel Palette */
+        :root {
+            --primary-color: #a291f2; /* Pastel Purple */
+            --secondary-color: #ffb3ab; /* Pastel Orange */
+            --accent-color: #a0c4ff; /* Pastel Blue */
+            --background-color: #fdf6fb; /* Light Pastel Background */
+            --text-color: #333333;
+            --navbar-bg: rgba(255, 255, 255, 0.9);
+            --navbar-text: #333333;
+            --footer-bg: #ece6f5;
+            --card-bg: #ffffff;
+            --btn-hover: #ffc9c9;
+        }
+        
+        /* Global Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            scroll-behavior: smooth;
+        }
+        
+        /* Navbar Styles */
+        .navbar {
+            background-color: var(--navbar-bg);
+            transition: background-color 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar.scrolled {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar-brand {
+            font-weight: 600;
+            color: var(--navbar-text) !important;
+        }
+        
+        .nav-link {
+            color: var(--navbar-text) !important;
+            font-weight: 500;
+            margin-left: 15px;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary-color) !important;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color)), url('https://images.unsplash.com/photo-1589254065878-42c9da997008?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            padding: 150px 0;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(44, 62, 80, 0.4);
+            z-index: -1;
+        }
+        
+        .hero h1 {
+            font-weight: 600;
+            font-size: 3.5rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+        }
+
+        .btn-primary {
+            background-color: var(--secondary-color);
+            border: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--btn-hover);
+        }
+        
+        /* About Section */
+        #about {
+            background-color: #ffffff;
+            padding: 80px 0;
+        }
+
+        #about h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        /* Features Section */
+        #features {
+            background-color: #fdf6fb;
+            padding: 80px 0;
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        
+        /* Products Section */
+        #products {
+            padding: 80px 0;
+            background-color: #ffffff;
+        }
+        
+        .card {
+            background-color: var(--card-bg);
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card-img-top {
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .card-title {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        
+        .btn-primary {
+            background-color: var(--secondary-color);
+            border: none;
+        }
+        
+        /* LIDAR Integration Section */
+        #lidar {
+            background-color: #e6f7ff;
+            padding: 80px 0;
+        }
+        
+        .lidar-icon {
+            font-size: 3rem;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+        
+        /* Testimonials Section */
+        #testimonials {
+            background-color: #ece6f5;
+            padding: 80px 0;
+        }
+        
+        .testimonial-card {
+            background-color: var(--card-bg);
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            padding: 30px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .blockquote-footer {
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+        
+        /* Contact Section */
+        #contact {
+            padding: 80px 0;
+        }
+        
+        .form-control {
+            border-radius: 10px;
+            border: 1px solid #cccccc;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: none;
+        }
+        
+        .btn-primary {
+            border-radius: 10px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--footer-bg);
+            color: #333333;
+            padding: 30px 0;
+        }
+        
+        .social-icons a {
+            color: var(--navbar-text);
+            margin: 0 10px;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            color: var(--primary-color);
+        }
+        
+        /* Scroll to Top Button */
+        #scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: none;
+            z-index: 1000;
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 100px 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Splat Robotics</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#products">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#lidar">LIDAR Integration</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#testimonials">Testimonials</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero d-flex align-items-center">
+        <div class="container text-center">
+            <h1 class="animate__animated animate__fadeInDown">Welcome to Splat Robotics</h1>
+            <p class="lead mb-4 animate__animated animate__fadeInUp">Revolutionizing quadruped robots with talking dog heads</p>
+            <a href="#products" class="btn btn-primary btn-lg animate__animated animate__fadeInUp">Explore Our Products</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5" data-aos="fade-up">About Splat Robotics</h2>
+            <div class="row align-items-center">
+                <div class="col-md-6" data-aos="fade-right">
+                    <img src="https://images.unsplash.com/photo-1589254066213-a0c9dc853511?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
+                         alt="Splat Robotics Dog Head" class="img-fluid rounded shadow mb-4">
+                </div>
+                <div class="col-md-6" data-aos="fade-left">
+                    <h3>Enhancing Human-Robot Interaction</h3>
+                    <p>At Splat Robotics, we believe in the power of positive reinforcement and genuine connections. Our talking dog heads are designed to bridge the gap between humans, animals, and technology, creating a more empathetic and understanding world.</p>
+                    <p>Our advanced AI algorithms enable our dog heads to recognize and compliment both people and real dogs based on their physical characteristics. This unique feature fosters positive interactions and boosts self-esteem in humans while encouraging friendly behavior in dogs.</p>
+                    <h4 class="mt-4 mb-3">Societal Benefits:</h4>
+                    <ul>
+                        <li>Improved emotional support for individuals with social anxiety or depression</li>
+                        <li>Enhanced communication tools for children with autism spectrum disorders</li>
+                        <li>Assistance in animal shelters to help socialize rescue dogs</li>
+                        <li>Support for elderly care facilities, providing companionship and cognitive stimulation</li>
+                        <li>Aid in search and rescue operations, combining canine-like abilities with human communication</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5" data-aos="fade-up">Why Choose Splat Robotics?</h2>
+            <div class="row">
+                <div class="col-md-4 text-center" data-aos="fade-up" data-aos-delay="100">
+                    <i class="bi bi-eye feature-icon"></i>
+                    <h3>Advanced Vision</h3>
+                    <p>Our dog heads are equipped with state-of-the-art cameras for enhanced visual perception.</p>
+                </div>
+                <div class="col-md-4 text-center" data-aos="fade-up" data-aos-delay="200">
+                    <i class="bi bi-chat-dots feature-icon"></i>
+                    <h3>Natural Speech</h3>
+                    <p>Cutting-edge speech synthesis for lifelike communication with the environment.</p>
+                </div>
+                <div class="col-md-4 text-center" data-aos="fade-up" data-aos-delay="300">
+                    <i class="bi bi-gear feature-icon"></i>
+                    <h3>Easy Integration</h3>
+                    <p>Seamlessly integrate our dog heads with various quadruped robot platforms.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LIDAR Integration Section -->
+    <section id="lidar" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5" data-aos="fade-up">Revolutionary LIDAR Integration</h2>
+            <div class="row align-items-center">
+                <div class="col-md-6" data-aos="fade-right">
+                    <i class="bi bi-layers-half lidar-icon"></i>
+                    <h3>Enhanced Environmental Awareness</h3>
+                    <p>By integrating LIDAR (Light Detection and Ranging) technology into our dog heads, Splat Robotics ensures that our quadruped robots have a comprehensive understanding of their surroundings. LIDAR allows for precise distance measurements and mapping, enabling robots to navigate complex environments with ease.</p>
+                    <h4 class="mt-4 mb-3">Benefits of LIDAR Integration:</h4>
+                    <ul>
+                        <li><strong>360-Degree Mapping:</strong> Create detailed spatial maps for accurate navigation and obstacle avoidance.</li>
+                        <li><strong>Real-Time Data Processing:</strong> Instantaneous analysis of the environment for swift decision-making.</li>
+                        <li><strong>Improved Interaction:</strong> More balanced and representative responses to environmental changes, ensuring safe and efficient operations.</li>
+                        <li><strong>Versatility:</strong> Enhanced capabilities in various applications, from search and rescue to companionship.</li>
+                        <li><strong>Scalability:</strong> Easily adaptable to different robot platforms and environments.</li>
+                    </ul>
+                </div>
+                <div class="col-md-6" data-aos="fade-left">
+                    <img src="https://images.unsplash.com/photo-1607923489343-2784e3d7d2f5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
+                         alt="LIDAR Technology" class="img-fluid rounded shadow">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5" data-aos="fade-up">Our Products</h2>
+            <div class="row">
+                <!-- SplatTalk 1000 -->
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card h-100">
+                        <img src="https://images.unsplash.com/photo-1589254066213-a0c9dc853511?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
+                             class="card-img-top" alt="SplatTalk 1000">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">SplatTalk 1000</h5>
+                            <p class="card-text">Our flagship model with advanced AI capabilities and realistic expressions. Equipped with high-resolution cameras and integrated LIDAR for superior environmental awareness.</p>
+                            <ul class="list-unstyled mt-3 mb-4">
+                                <li><i class="bi bi-check-circle-fill text-success me-2"></i>AI-Powered Communication</li>
+                                <li><i class="bi bi-check-circle-fill text-success me-2"></i>360-Degree LIDAR Mapping</li>
+                                <li><i class="bi bi-check-circle-fill text-success me-2"></i>Realistic Facial Expressions</li>
+                            </ul>
+                            <a href="#" class="btn btn-primary mt-auto">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- SplatVision Pro -->
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card h-100">
+                        <img src="https://images.unsplash.com/photo-1589254065909-b7086229d08c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
+                             class="card-img-top" alt="SplatVision Pro">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">SplatVision Pro</h5>
+                            <p class="card-text">Enhanced visual capabilities with night vision and thermal imaging. Integrated LIDAR ensures balanced interaction by accurately detecting and interpreting environmental data.</p>
+                            <ul class="list-unstyled mt-3 mb-4">
+                                <li><i class="bi bi-check-circle-fill text-success me-2"></i>Night Vision</li>
+                                <li><i class="bi bi-check-circle-fill text-success me-2"></i>Thermal Imaging</li>
+                                <li><i class="bi bi-check-circle-fill text-success me-2"></i>Precision LIDAR Sensors</li>
+                            </ul>
+                            <a href="#" class="btn btn-primary mt-auto">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- SplatMini -->
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card h-100">
+                        <img src="https://images.unsplash.com/photo-1589254066755-143c2b90e4d3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
+                             class="card-img-top" alt="SplatMini">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">SplatMini</h5>
+                            <p class="card-text">Compact and lightweight design for smaller quadruped robots. Despite its size, SplatMini doesn't compromise on performance, thanks to its efficient LIDAR integration.</p>
+                            <ul class="list-unstyled mt-3 mb-4">
+                                <li><i class="bi bi-check-circle-fill text-success me-2"></i>Lightweight Design</li>
+                                <li><i class="bi bi-check-circle-fill text-success me-2"></i>Efficient Power Consumption</li>
+                                <li><i class="bi bi-check-circle-fill text-success me-2"></i>Integrated LIDAR Sensors</li>
+                            </ul>
+                            <a href="#" class="btn btn-primary mt-auto">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- New Product Example: SplatSense -->
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="400">
+                    <div class="card h-100">
+                        <img src="https://images.unsplash.com/photo-1607923489343-2784e3d7d2f5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
+                             class="card-img-top" alt="SplatSense">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">SplatSense</h5>
+                            <p class="card-text">Advanced sensory integration platform. SplatSense combines LIDAR with multi-spectral sensors to provide unparalleled environmental awareness and interaction capabilities.</p>
+                            <ul class="list-unstyled mt-3 mb-4">
+                                <li><i class="bi bi-check-circle-fill text-success me-2"></i>Multi-Spectral Sensors</li>
+                                <li><i class="bi bi-check-circle-fill text-success me-2"></i>Real-Time Data Fusion</li>
+                                <li><i class="bi bi-check-circle-fill text-success me-2"></i>Scalable Integration</li>
+                            </ul>
+                            <a href="#" class="btn btn-primary mt-auto">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Additional Products can be added similarly -->
+            </div>
+        </section>
+
+    <!-- LIDAR Integration Section -->
+    <section id="lidar" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5" data-aos="fade-up">Revolutionary LIDAR Integration</h2>
+            <div class="row align-items-center">
+                <div class="col-md-6" data-aos="fade-right">
+                    <i class="bi bi-layers-half lidar-icon"></i>
+                    <h3>Enhanced Environmental Awareness</h3>
+                    <p>By integrating LIDAR (Light Detection and Ranging) technology into our dog heads, Splat Robotics ensures that our quadruped robots have a comprehensive understanding of their surroundings. LIDAR allows for precise distance measurements and mapping, enabling robots to navigate complex environments with ease.</p>
+                    <h4 class="mt-4 mb-3">Benefits of LIDAR Integration:</h4>
+                    <ul>
+                        <li><strong>360-Degree Mapping:</strong> Create detailed spatial maps for accurate navigation and obstacle avoidance.</li>
+                        <li><strong>Real-Time Data Processing:</strong> Instantaneous analysis of the environment for swift decision-making.</li>
+                        <li><strong>Improved Interaction:</strong> More balanced and representative responses to environmental changes, ensuring safe and efficient operations.</li>
+                        <li><strong>Versatility:</strong> Enhanced capabilities in various applications, from search and rescue to companionship.</li>
+                        <li><strong>Scalability:</strong> Easily adaptable to different robot platforms and environments.</li>
+                    </ul>
+                </div>
+                <div class="col-md-6" data-aos="fade-left">
+                    <img src="https://images.unsplash.com/photo-1607923489343-2784e3d7d2f5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" 
+                         alt="LIDAR Technology" class="img-fluid rounded shadow">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5" data-aos="fade-up">What Our Customers Say</h2>
+            <div class="row">
+                <div class="col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="testimonial-card">
+                        <p>"Splat Robotics has transformed our quadruped robots. The talking dog heads add a whole new dimension to human-robot interaction."</p>
+                        <footer class="blockquote-footer">John Doe, <cite title="Source Title">RoboTech Industries</cite></footer>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="testimonial-card">
+                        <p>"The visual capabilities of SplatVision Pro are unmatched. It's a game-changer for our search and rescue operations."</p>
+                        <footer class="blockquote-footer">Jane Smith, <cite title="Source Title">Emergency Response Team</cite></footer>
+                    </div>
+                </div>
+                <!-- Additional testimonials can be added similarly -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5" data-aos="fade-up">Contact Us</h2>
+            <div class="row">
+                <div class="col-md-6 mx-auto" data-aos="fade-up" data-aos-delay="100">
+                    <form id="contact-form">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" placeholder="you@example.com" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea class="form-control" id="message" rows="5" placeholder="Your Message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center">
+        <div class="container">
+            <p>&copy; 2023 Splat Robotics. All rights reserved.</p>
+            <div class="social-icons">
+                <a href="#" class="me-3"><i class="bi bi-facebook"></i></a>
+                <a href="#" class="me-3"><i class="bi bi-twitter"></i></a>
+                <a href="#" class="me-3"><i class="bi bi-linkedin"></i></a>
+                <a href="#"><i class="bi bi-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button id="scroll-to-top" class="btn btn-primary" title="Go to top"><i class="bi bi-arrow-up"></i></button>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- AOS JS -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <!-- Custom Scripts -->
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        // Navbar color change on scroll
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 50) {
+                document.querySelector('.navbar').classList.add('scrolled');
+            } else {
+                document.querySelector('.navbar').classList.remove('scrolled');
+            }
+        });
+
+        // Scroll to top button
+        const scrollToTopBtn = document.getElementById("scroll-to-top");
+
+        window.onscroll = function() {
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                scrollToTopBtn.style.display = "block";
+            } else {
+                scrollToTopBtn.style.display = "none";
+            }
+        };
+
+        scrollToTopBtn.onclick = function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
+
+        // Form submission
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            Swal.fire({
+                title: 'Message Sent!',
+                text: 'We will get back to you soon.',
+                icon: 'success',
+                confirmButtonColor: '#a291f2' // Using primary-color variable
+            });
+            this.reset();
+        });
+
+        // Product hover effect handled by CSS transitions
+    </script>
+</body>
+</html>
+
+
+
+							<script>
+                            	
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        // Navbar color change on scroll
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 50) {
+                document.querySelector('.navbar').classList.add('scrolled');
+            } else {
+                document.querySelector('.navbar').classList.remove('scrolled');
+            }
+        });
+
+        // Scroll to top button
+        const scrollToTopBtn = document.getElementById("scroll-to-top");
+
+        window.onscroll = function() {
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                scrollToTopBtn.style.display = "block";
+            } else {
+                scrollToTopBtn.style.display = "none";
+            }
+        };
+
+        scrollToTopBtn.onclick = function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        };
+
+        // Form submission
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            Swal.fire({
+                title: 'Message Sent!',
+                text: 'We will get back to you soon.',
+                icon: 'success',
+                confirmButtonColor: '#a291f2' // Using primary-color variable
+            });
+            this.reset();
+        });
+
+        // Product hover effect handled by CSS transitions
+    
+
+    </script>
+</body>
+</html>
